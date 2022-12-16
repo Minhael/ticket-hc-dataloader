@@ -41,7 +41,7 @@ builder.Services.AddOpenTelemetryTracing(tracerProviderBuilder =>
 //  Add HotChocolate
 builder.Services.AddGraphQLServer()
                 .InitializeOnStartup()
-                .AddInstrumentation()
+                // .AddInstrumentation()
                 .AddApolloTracing()
                 .AddQueryType(q => q.Name(OperationTypeNames.Query))
                 .AddTypeExtension<FooResolver>()

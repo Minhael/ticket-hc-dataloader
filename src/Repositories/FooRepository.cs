@@ -1,3 +1,5 @@
+using OpenTelemetry.Trace;
+
 namespace HotChocolate.DataLoader.Repositories;
 
 public record Foo
@@ -7,9 +9,12 @@ public record Foo
 
 public class FooRepository
 {
+    private readonly Tracer _tracer = Measure.CreateTracer<FooRepository>();
+
     public async Task<IEnumerable<Foo>> LoadAsync(IEnumerable<int> keys, CancellationToken token = default)
     {
-        await Task.Delay(1000);
-        return keys.Select(x => new Foo { Index = x });
+        var arr = keys.ToArray();
+        using var span = _tracer.StartActiveSpan($"LOAD FOO({arr.Length})");
+        return arr.Select(x => new Foo { Index = x });
     }
 }

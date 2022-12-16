@@ -1,26 +1,33 @@
 using HotChocolate.DataLoader.DataLoaders;
 using HotChocolate.DataLoader.Repositories;
+using OpenTelemetry.Trace;
 
 namespace HotChocolate.DataLoader.Resolvers;
 
 [ExtendObjectType(OperationTypeNames.Query)]
 public class FooResolver
 {
-    public Task<IEnumerable<Foo>> GetFooAsync(
+    private readonly Tracer _tracer = Measure.CreateTracer<BarDataLoader>();
+
+    public async Task<IEnumerable<Foo>> GetFooAsync(
         int size,
         [Service] FooRepository repository,
         CancellationToken token = default
     )
     {
-        return repository.LoadAsync(Enumerable.Range(0, size), token);
+        using var span = _tracer.StartActiveSpan($"RESOLVE FOO({size})");
+        return await repository.LoadAsync(Enumerable.Range(0, size), token);
     }
 }
 
 [ExtendObjectType(typeof(Foo))]
 public class FooExtensions
 {
+    private readonly Tracer _tracer = Measure.CreateTracer<FooExtensions>();
+
     public async Task<IEnumerable<Bar>> GetBarsAsync([Parent] Foo parent, [DataLoader] BarDataLoader loader, CancellationToken token = default)
     {
+        using var span = _tracer.StartActiveSpan("EXTEND FOO->BAR");
         return await loader.LoadAsync(parent.Index, token);
     }
 }
