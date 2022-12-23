@@ -27,7 +27,7 @@ public class FooExtensions
 
     public async Task<IEnumerable<Bar>> GetBarsAsync([Parent] Foo parent, [DataLoader] BarDataLoader loader, CancellationToken token = default)
     {
-        using var span = _tracer.StartActiveSpan("EXTEND FOO->BAR");
+        using var span = _tracer.StartActiveSpan($"EXTEND FOO->BAR[{parent.Index}]");
         return await loader.LoadAsync(parent.Index, token);
     }
 }
