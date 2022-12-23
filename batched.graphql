@@ -1,0 +1,11 @@
+﻿query GetBatchedFoobars($size: Int!) {
+  fooBatch(size: $size) {
+    foos {
+      index
+    }
+    bars {
+      parent
+      index
+    }
+  }
+}

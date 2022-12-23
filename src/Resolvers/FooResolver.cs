@@ -7,9 +7,9 @@ namespace HotChocolate.DataLoader.Resolvers;
 [ExtendObjectType(OperationTypeNames.Query)]
 public class FooResolver
 {
-    private readonly Tracer _tracer = Measure.CreateTracer<BarDataLoader>();
+    private readonly Tracer _tracer = Measure.CreateTracer<FooResolver>();
 
-    public async Task<IEnumerable<Foo>> GetFooAsync(
+    public async Task<IEnumerable<Foo>> GetFoosAsync(
         int size,
         [Service] FooRepository repository,
         CancellationToken token = default
