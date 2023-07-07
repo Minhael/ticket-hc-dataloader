@@ -25,7 +25,7 @@ public class FooExtensions
 {
     private readonly Tracer _tracer = Measure.CreateTracer<FooExtensions>();
 
-    public async Task<IEnumerable<Bar>> GetBarsAsync([Parent] Foo parent, [DataLoader] BarDataLoader loader, CancellationToken token = default)
+    public async Task<IEnumerable<Bar>> GetBarsAsync([Parent] Foo parent, BarDataLoader loader, CancellationToken token = default)
     {
         using var span = _tracer.StartActiveSpan("EXTEND FOO->BAR");
         return await loader.LoadAsync(parent.Index, token);

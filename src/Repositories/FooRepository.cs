@@ -15,6 +15,7 @@ public class FooRepository
     {
         var arr = keys.ToArray();
         using var span = _tracer.StartActiveSpan($"LOAD FOO({arr.Length})");
+        await Task.CompletedTask;
         return arr.Select(x => new Foo { Index = x });
     }
 }

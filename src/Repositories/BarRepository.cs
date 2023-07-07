@@ -16,6 +16,7 @@ public class BarRepository
     {
         var arr = keys.ToArray();
         using var span = _tracer.StartActiveSpan($"LOAD BAR({arr.Length})");
+        await Task.CompletedTask;
         return arr.SelectMany(x => Enumerable.Range(0, x).Select(y => new Bar { Parent = x, Index = y }));
     }
 }

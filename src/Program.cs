@@ -19,29 +19,29 @@ builder.Services.AddScoped<FooRepository>();
 builder.Services.AddScoped<BarRepository>();
 
 //  Add OpenTelemetry
-builder.Services.AddOpenTelemetryTracing(tracerProviderBuilder =>
-{
-    tracerProviderBuilder
-    .AddOtlpExporter(opt =>
-    {
-        opt.Protocol = OtlpExportProtocol.Grpc;
-    })
-    .AddSource("HotChocolate.*")
-    .SetResourceBuilder(
-        ResourceBuilder.CreateDefault().AddService(
-            serviceName: "HotChocolate.DataLoader",
-            serviceVersion: "Development"
-        )
-    )
-    // .AddHotChocolateInstrumentation()
-    .AddHttpClientInstrumentation()
-    .AddAspNetCoreInstrumentation();
-});
+builder.Services.AddOpenTelemetry()
+                .WithTracing(tracerProviderBuilder =>
+                {
+                    tracerProviderBuilder
+                    .AddSource("HotChocolate.*")
+                    .SetResourceBuilder(
+                        ResourceBuilder.CreateDefault().AddService(
+                            serviceName: "HotChocolate.DataLoader",
+                            serviceVersion: "Development"
+                        )
+                    )
+                    .AddAspNetCoreInstrumentation()
+                    // .AddHotChocolateInstrumentation()
+                    .AddOtlpExporter(opt =>
+                    {
+                        opt.Protocol = OtlpExportProtocol.Grpc;
+                    });
+                });
 
 //  Add HotChocolate
 builder.Services.AddGraphQLServer()
                 .InitializeOnStartup()
-                // .AddInstrumentation()
+                .AddInstrumentation()
                 .AddApolloTracing()
                 .AddQueryType(q => q.Name(OperationTypeNames.Query))
                 .AddTypeExtension<FooResolver>()
