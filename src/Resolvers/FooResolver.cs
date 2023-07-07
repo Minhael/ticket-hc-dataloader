@@ -7,9 +7,9 @@ namespace HotChocolate.DataLoader.Resolvers;
 [ExtendObjectType(OperationTypeNames.Query)]
 public class FooResolver
 {
-    private readonly Tracer _tracer = Measure.CreateTracer<BarDataLoader>();
+    private readonly Tracer _tracer = Measure.CreateTracer<FooResolver>();
 
-    public async Task<IEnumerable<Foo>> GetFooAsync(
+    public async Task<IEnumerable<Foo>> GetFoosAsync(
         int size,
         [Service] FooRepository repository,
         CancellationToken token = default
@@ -27,7 +27,7 @@ public class FooExtensions
 
     public async Task<IEnumerable<Bar>> GetBarsAsync([Parent] Foo parent, BarDataLoader loader, CancellationToken token = default)
     {
-        using var span = _tracer.StartActiveSpan("EXTEND FOO->BAR");
+        using var span = _tracer.StartActiveSpan($"EXTEND FOO->BAR[{parent.Index}]");
         return await loader.LoadAsync(parent.Index, token);
     }
 }

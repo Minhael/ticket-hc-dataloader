@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.1.32319.34
+VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotChocolate.DataLoader", "HotChocolate.DataLoader.csproj", "{B84B9CD0-B8EE-44F5-82BB-8905990C0B40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotChocolate.DataLoader", "HotChocolate.DataLoader.csproj", "{AC63A49E-AFF9-432C-8DAB-8DB80EAFBA1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B84B9CD0-B8EE-44F5-82BB-8905990C0B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B84B9CD0-B8EE-44F5-82BB-8905990C0B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B84B9CD0-B8EE-44F5-82BB-8905990C0B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B84B9CD0-B8EE-44F5-82BB-8905990C0B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC63A49E-AFF9-432C-8DAB-8DB80EAFBA1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC63A49E-AFF9-432C-8DAB-8DB80EAFBA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC63A49E-AFF9-432C-8DAB-8DB80EAFBA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC63A49E-AFF9-432C-8DAB-8DB80EAFBA1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {ADF9C59B-8D5B-4C59-BF07-1FCA0FD984DA}
+		SolutionGuid = {29E6FC07-0C55-4FFF-B965-365B58B81786}
 	EndGlobalSection
 EndGlobal

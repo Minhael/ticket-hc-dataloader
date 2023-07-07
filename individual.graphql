@@ -1,0 +1,9 @@
+﻿query GetFoobars($size: Int!) {
+  foos(size: $size) {
+    index
+    bars {
+      parent
+      index
+    }
+  }
+}
