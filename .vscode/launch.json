@@ -14,6 +14,18 @@
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
+            "justMyCode": false, // should be false, as we want to debug 3rd party source code
+            "requireExactSource": false, // https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#require-exact-source
+            "suppressJITOptimizations": true, // it's better to set true for local debugging
+            "enableStepFiltering": false, // to step into properties
+            "symbolOptions": {
+                "searchMicrosoftSymbolServer": true, // get pdb files from ms symbol server
+                "searchNuGetOrgSymbolServer": true,
+                "moduleFilter": {
+                    "mode": "loadAllButExcluded",
+                    "excludedModules": []
+                }
+            },
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {
                 "action": "openExternally",
