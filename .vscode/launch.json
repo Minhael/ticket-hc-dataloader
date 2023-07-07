@@ -31,6 +31,18 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
-        }
+        },
+        {
+            "type": "dotnetwatchattach",
+            "request": "launch",
+            "name": ".NET Watch Attach",
+            "args": { // Args to pass to coreclr attach
+              "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+              }
+            },
+            "task": "watch", // Label of watch task in tasks.json
+            "program": "HotChocolate.DataLoader.exe" // for windows Or "<startup-project-name>" for linux
+          }
     ]
 }
